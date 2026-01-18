@@ -1,0 +1,34 @@
+@Metadata.layer: #CUSTOMER
+
+annotate view zvendor_basicview
+    with 
+{
+ 
+  
+@EndUserText.label: 'Vendor Name'
+ @UI.lineItem: [{ position: 10 }]
+VendorName;
+@EndUserText.label: 'PAN Card Number'
+@UI.lineItem: [{ position: 20 }]
+PanNumber;
+@EndUserText.label: 'GSTIN Number'
+GstinNumber;
+@EndUserText.label: 'Contact Name'
+ContactName;
+@EndUserText.label: 'Contact Email'
+ContactEmail;
+@EndUserText.label: 'Contact Phone Number'
+ContactPhone;
+@EndUserText.label: 'Bank Account Number'
+BankAccount;
+@EndUserText.label: 'IFSC COde'
+IfscCode;
+@EndUserText.label: 'Category'
+Category;
+@EndUserText.label: 'Country'
+Country;
+@EndUserText.label: 'Status'
+Status;
+
+    
+}

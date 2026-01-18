@@ -1,0 +1,90 @@
+managed implementation in class zcl_bp_vendor_root unique; //implementation type
+strict ( 2 );
+with draft;
+
+
+
+define behavior for zvendor_root alias vendor
+persistent table zvendor02
+draft table zvendor_d01
+lock master
+total etag LastActionat
+authorization master ( instance )
+etag master version
+
+
+{
+mapping for zvendor02
+{
+  Vid           = Vid;
+  VendorName    = VENDOR_NAME;
+  PanNumber     = PAN_NUMBER;
+  GstinNumber   = GSTIN_NUMBER;
+
+  ContactName   = CONTACT_NAME;
+  ContactEmail  = CONTACT_EMAIL;
+  ContactPhone  = CONTACT_PHONE;
+
+  BankAccount   = BANK_ACCOUNT;
+  IfscCode      = IFSC_CODE;
+  Category      = Category;
+  Country       = Country;
+
+  Status        = Status;
+
+  CreatedAt     = CREATED_AT;
+  CreatedBy     = CREATED_BY;
+  ModifiedAt    = MODIFIED_AT;
+  ModifiedBy    = MODIFIED_BY;
+  LastActionat  = LAST_ACTIONAT;
+  LastActionby  = LAST_ACTIONBY;
+  version       = version;
+}
+
+  create;
+  update;
+  delete;
+
+// <--- 3. ADD THESE DRAFT ACTIONS
+  draft action Edit;
+  draft action Activate optimized;
+
+  draft action Discard;
+  draft action Resume;
+
+  // <--- 4. ADD THIS PREPARE ACTION
+  draft determine action Prepare
+  {
+    validation validate_pan;
+    validation validate_gstin;
+  }
+
+  action Submit result [1] $self;
+  action ApproveByManager result [1] $self;
+  action ApproveByFinance result [1] $self;
+  action Reject parameter ZI_REJECTION_REASON result [1] $self;
+
+ // determination set_initial_status on modify { field Status; }
+ determination set_initial_status on save { create; }
+
+
+field ( readonly, numbering : managed )
+  Vid;
+
+  field ( readonly)
+
+    CreatedAt,
+      CreatedBy,
+      ModifiedAt,
+      ModifiedBy,
+      LastActionat,
+      LastActionby,
+      version;
+
+  validation validate_pan on save { field PanNumber; }
+  validation validate_gstin on save { field GstinNumber; }
+
+
+
+
+}

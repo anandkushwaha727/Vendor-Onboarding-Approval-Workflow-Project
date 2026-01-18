@@ -1,0 +1,4 @@
+@EndUserText.label: 'Vendor Onboarding RAP Service'
+define service ZSRV_VENDOR_SD {
+  expose ZC_VENDOR as Vendor;
+}
