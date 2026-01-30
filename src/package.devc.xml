@@ -6,6 +6,8 @@
     <CTEXT>Vendor Onboarding &amp; Approval Workflow</CTEXT>
     <LANGUAGE>E</LANGUAGE>
     <MASTERLANG>E</MASTERLANG>
+    <RESTRICTED>X</RESTRICTED>
+    <SRV_CHECK>X</SRV_CHECK>
    </DEVC>
   </asx:values>
  </asx:abap>

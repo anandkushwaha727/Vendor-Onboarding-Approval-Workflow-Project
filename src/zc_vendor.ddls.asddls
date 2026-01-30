@@ -5,15 +5,23 @@
 
 @UI.headerInfo: {
   typeName: 'Vendor',
-  typeNamePlural: 'Vendors',
+  typeNamePlural: 'Vendor Onboarding Requests',
   title: { value: 'VendorName' }
 }
-
+@UI.presentationVariant: [{ 
+requestAtLeast: ['VendorName']
+ }]
+ 
+ 
 define root view entity ZC_VENDOR  provider contract transactional_query as projection on zvendor_root
 
 {
+
+
+
   @UI.identification: [
     {
+    
       position: 10,
       type: #FOR_ACTION,
       dataAction: 'Submit',
@@ -24,6 +32,18 @@ define root view entity ZC_VENDOR  provider contract transactional_query as proj
       type: #FOR_ACTION,
       dataAction: 'ApproveByManager',
       label: 'ApproveByManager'
+    },
+    {
+      position: 30,
+      type: #FOR_ACTION,
+      dataAction: 'ApproveByFinance',
+      label: 'ApproveByFinance'
+    },
+     {
+      position: 40,
+      type: #FOR_ACTION,
+      dataAction: 'reject',
+      label: 'Recject'
     }
   ]
   
@@ -42,31 +62,32 @@ define root view entity ZC_VENDOR  provider contract transactional_query as proj
 
   @UI.lineItem: [{ position: 20 }]
   @UI.identification: [{ position: 20 }]
+  @UI.selectionField: [{position:20 }]
   VendorName,
 
-  @UI.lineItem: [{ position: 30 }]
+  
   @UI.identification: [{ position: 30 }]
   PanNumber,
   @UI.identification: [{ position: 40 }]
-  @UI.lineItem: [{ position: 40 }]
+
   GstinNumber,
 @UI.lineItem: [{ position: 50 }]
   @UI.identification: [{ position: 50 }]
   ContactName,
 
- @UI.lineItem: [{ position: 60 }]
+ 
   @UI.identification: [{ position: 60 }]
   ContactEmail,
 
-  @UI.lineItem: [{ position: 70 }]
+  
   @UI.identification: [{ position: 80 }]
   ContactPhone,
 
-  @UI.lineItem: [{ position: 90 }]
+  
   @UI.identification: [{ position: 90 }]
   BankAccount,
 
-  @UI.lineItem: [{ position: 91 }]
+  
   @UI.identification: [{ position: 91 }]
   IfscCode,
   @UI.identification: [{ position: 92 }]
@@ -77,20 +98,25 @@ define root view entity ZC_VENDOR  provider contract transactional_query as proj
     element: 'Category'
   }
 }]
+@UI.selectionField: [{ position: 92 }]
   Category,
 
  @UI.lineItem: [{ position: 93 }]
   @UI.identification: [{ position: 93 }]
+  @UI.selectionField: [{ position: 93 }]
   Country,
 
  @UI.lineItem: [{ position: 94 }]
+ @UI.selectionField: [{ position: 94 }]
   Status,
 
   CreatedAt,
   CreatedBy,
   ModifiedAt,
   ModifiedBy,
+  @UI.lineItem: [{ position: 95}]
   LastActionat,
+  @UI.lineItem: [{ position: 96}]
   LastActionby,
   Version
 }
